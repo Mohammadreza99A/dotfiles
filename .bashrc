@@ -5,6 +5,15 @@
 # A very simple bashrc file
 #
 
+
+# Dependencies:
+#   - exa --> https://github.com/ogham/exa
+#   - dotacat --> https://git.scd31.com/stephen/dotacat
+#   - neofetch --> https://github.com/dylanaraps/neofetch
+#   - colorscript --> https://gitlab.com/dwt1/shell-color-scripts
+#   - starship --> https://github.com/starship/starship
+#
+
 [[ $- != *i* ]] && return
 
 colors() {
@@ -157,6 +166,7 @@ alias ll='exa -al --color=always --group-directories-first' # my preferred listi
 alias ls='exa -l --color=always --group-directories-first' # my preferred listing
 alias update='paru -Syyu' 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias clear='/bin/clear; echo; seq 1 $(tput cols) | sort -R | spark | dotacat' # Spark alias
 
 # My startup scripts
 colorscript random
