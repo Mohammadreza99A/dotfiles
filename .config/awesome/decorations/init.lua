@@ -1,0 +1,4 @@
+-- Mohammadreza Amini
+-- https://github.com/Mohammadreza99A
+-- init.lua --> Entry file for decorations in awesome wm
+--
