@@ -204,8 +204,16 @@ theme.titlebar_maximized_button_focus_inactive = theme.icons_dir ..
                                                      "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.icons_dir ..
                                                       "/icons/titlebar/maximized_normal_inactive.png"
-theme.right = ""
-theme.left = ""
+theme.icon_crop = theme.icons_dir .. "/icons/image-crop.svg"
+theme.icon_screen = theme.icons_dir .. "/icons/computer.svg"
+theme.icon_window = theme.icons_dir .. "/icons/window.svg"
+theme.icon_add = theme.icons_dir .. "/icons/add.svg"
+theme.icon_minus = theme.icons_dir .. "/icons/minus.svg"
+theme.icon_times = theme.icons_dir .. "/icons/remove.svg"
+theme.icon_screenhost_taken = theme.icons_dir .. "/icons/camera-photo-icon.svg"
+theme.icon_recorder = theme.icons_dir .. "/icons/camera-on.svg"
+theme.icon_camera = theme.icons_dir .. "/icons/camera-photo.svg"
+
 -- }}}
 
 -- {{{ Widgets container

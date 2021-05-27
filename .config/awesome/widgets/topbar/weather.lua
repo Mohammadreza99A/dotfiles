@@ -10,7 +10,7 @@ local dpi = beautiful.xresources.apply_dpi
 local filesystem = gears.filesystem
 local json = require("lib.json")
 
-local icon_dir = filesystem.get_configuration_dir() .. "/themes/icons/weather/"
+local icon_dir = filesystem.get_configuration_dir() .. "themes/icons/weather/"
 
 local GET_FORECAST_CMD = [[bash -c "curl -s --show-error -X GET '%s'"]]
 
@@ -47,7 +47,7 @@ local current_weather_widget = wibox.widget {
     {
         {
             id = "icon",
-            image = icon_dir .. "weather-showers.png",
+            image = icon_dir .. "shower-rain.png",
             resize = true,
             forced_height = dpi(128),
             forced_width = dpi(128),
@@ -114,7 +114,7 @@ local hourly_widget = function()
         {
             {
                 id = "icon",
-                image = icon_dir .. "weather-clear-sky.png",
+                image = icon_dir .. "clear-sky.png",
                 resize = true,
                 forced_height = dpi(32),
                 forced_width = dpi(32),

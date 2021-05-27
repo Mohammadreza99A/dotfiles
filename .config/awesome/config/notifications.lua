@@ -14,7 +14,7 @@ naughty.config.padding = dpi(10)
 naughty.config.defaults.margin = dpi(10)
 naughty.config.defaults.border_width = 2
 naughty.config.defaults.max_width = dpi(450)
-naughty.config.defaults.max_height = dpi(80)
+naughty.config.defaults.max_height = dpi(200)
 naughty.config.defaults.icon_size = 80
 naughty.config.defaults.shape = function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, dpi(8))

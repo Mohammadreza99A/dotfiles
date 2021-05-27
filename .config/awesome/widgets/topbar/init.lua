@@ -40,6 +40,7 @@ awful.screen.connect_for_each_screen(function(s)
                                  5, 5),
                 s.systray,
                 require("widgets.popup.exit_screen").widget,
+                require("widgets.popup.screenshot"),
                 require("widgets.topbar.layoutbox"),
                 layout = wibox.layout.fixed.horizontal
             },
