@@ -2,38 +2,42 @@
 -- https://github.com/Mohammadreza99A
 -- rc.lua --> awesome wm entry file
 --
-local awful = require("awful")
+
+local awful = require('awful')
+
+-- Use bash as shell for awful utils
+awful.util.shell = 'bash'
 
 -- Notifications config
-require("config.notifications")
+require('config.notifications')
 
 -- Error handling
-require("config.errorhandling")
+require('config.errorhandling')
 
 -- Layouts
-require("config.layout")
+require('config.layout')
 
 -- Theme
-require("config.theme_conf")
+require('config.theme_conf')
 
 -- Widgets
-require("widgets.init")
+require('widgets.init')
 
 -- Key bindings
-require("config.keys")
+require('config.keys')
 
 -- Rules
-require("config.rules")
+require('config.rules')
 
 -- Decorations
-require("decorations.init")
+require('decorations.init')
 
 -- Signals
-require("config.signals")
+require('config.signals')
 
 -- Garbage Collection
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)
+collectgarbage('setpause', 110)
+collectgarbage('setstepmul', 1000)
 
 -- Autostart
-awful.spawn.with_shell("~/.config/awesome/config/autorun.sh")
+awful.spawn.with_shell('~/.config/awesome/config/autorun.sh')

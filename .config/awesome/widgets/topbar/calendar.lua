@@ -2,22 +2,25 @@
 -- https://github.com/Mohammadreza99A
 -- calendar.lua --> Calendar widget for awesome wm
 --
-local wibox = require("wibox")
-local awful = require("awful")
-local gears = require("gears")
-local beautiful = require("beautiful")
+
+local wibox = require('wibox')
+local awful = require('awful')
+local gears = require('gears')
+local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 
 -- calendar
 local styles = {}
 
-styles.month = {bg_color = "#00000000", border_width = 0, padding = 4}
+styles.month = {bg_color = '#00000000', border_width = 0, padding = 4}
 
 styles.normal = {padding = dpi(7)}
 
 styles.focus = {
     fg_color = beautiful.fg_normal,
-    markup = function(t) return '<b>' .. t .. '</b>' end,
+    markup = function(t)
+        return '<b>' .. t .. '</b>'
+    end,
     bg_color = beautiful.bg_very_light,
     padding = dpi(7),
     shape = gears.shape.circle
@@ -25,7 +28,7 @@ styles.focus = {
 
 styles.header = {
     fg_color = beautiful.fg_normal,
-    bg_color = "#00000000",
+    bg_color = '#00000000',
     markup = function(t)
         return beautiful.markup_text(t, beautiful.font_xlarge_bold)
     end,
@@ -34,11 +37,15 @@ styles.header = {
 
 styles.weekday = {
     fg_color = beautiful.fg_dark,
-    markup = function(t) return string.upper(t) end
+    markup = function(t)
+        return string.upper(t)
+    end
 }
 
 local function decorate_cell(widget, flag, date)
-    if flag == 'monthheader' and not styles.monthheader then flag = 'header' end
+    if flag == 'monthheader' and not styles.monthheader then
+        flag = 'header'
+    end
     local props = styles[flag] or {}
     if props.markup and widget.get_text and widget.set_markup then
         widget:set_markup(props.markup(widget:get_text()))
@@ -50,9 +57,9 @@ local function decorate_cell(widget, flag, date)
         day = (date.day or 1)
     }
     local weekday = tonumber(os.date('%w', os.time(d)))
-    local default_bg = (weekday == 0 or weekday == 7) and '#00000000' or
-                           '#00000000'
-    local ret = wibox.widget {
+    local default_bg = (weekday == 0 or weekday == 7) and '#00000000' or '#00000000'
+    local ret =
+        wibox.widget {
         {
             widget,
             margins = (props.padding or 0) + (props.border_width or 0),
@@ -68,7 +75,8 @@ local function decorate_cell(widget, flag, date)
     return ret
 end
 
-local calendar = wibox.widget {
+local calendar =
+    wibox.widget {
     date = os.date('*t'),
     font = beautiful.font,
     long_weekdays = false,
@@ -77,13 +85,14 @@ local calendar = wibox.widget {
     widget = wibox.widget.calendar.month
 }
 
-local calendar_widget = wibox.widget {
+local calendar_widget =
+    wibox.widget {
     layout = wibox.layout.align.vertical,
     calendar,
     {
         {
             layout = wibox.layout.align.horizontal,
-            expand = "inside",
+            expand = 'inside',
             nil,
             nil,
             {
@@ -98,17 +107,29 @@ local calendar_widget = wibox.widget {
     }
 }
 
-calendar_widget:buttons(awful.util.table.join(
-                            awful.button({}, 4, function()
-        local date = calendar:get_date()
-        date.month = date.month + 1
-        calendar:set_date(nil)
-        calendar:set_date(date)
-    end), awful.button({}, 5, function()
-        local date = calendar:get_date()
-        date.month = date.month - 1
-        calendar:set_date(nil)
-        calendar:set_date(date)
-    end)))
+calendar_widget:buttons(
+    awful.util.table.join(
+        awful.button(
+            {},
+            4,
+            function()
+                local date = calendar:get_date()
+                date.month = date.month + 1
+                calendar:set_date(nil)
+                calendar:set_date(date)
+            end
+        ),
+        awful.button(
+            {},
+            5,
+            function()
+                local date = calendar:get_date()
+                date.month = date.month - 1
+                calendar:set_date(nil)
+                calendar:set_date(date)
+            end
+        )
+    )
+)
 
 return calendar_widget

@@ -2,11 +2,13 @@
 -- https://github.com/Mohammadreza99A
 -- layout.lua --> Used layouts in awesome wm
 --
-local awful = require("awful")
+
+local awful = require('awful')
 
 awful.layout.layouts = {
-    awful.layout.suit.tile, awful.layout.suit.floating
-    -- awful.layout.suit.tile.left, 
+    awful.layout.suit.tile,
+    awful.layout.suit.floating
+    -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top
     -- awful.layout.suit.fair,

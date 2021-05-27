@@ -1,14 +1,19 @@
-local wibox = require("wibox")
-local gears = require("gears")
-local beautiful = require("beautiful")
+-- Mohammadreza Amini
+-- https://github.com/Mohammadreza99A
+-- create_button.lua --> A button container for awesome wm widgets
+--
+
+local wibox = require('wibox')
+local gears = require('gears')
+local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
-local clickable_container = require("widgets.clickable-container")
+local clickable_container = require('widgets.clickable-container')
 local create_button = {}
 
 function create_button.small(icon_path)
-
-    local button_image = wibox.widget {
-        id = "icon",
+    local button_image =
+        wibox.widget {
+        id = 'icon',
         image = icon_path,
         resize = true,
         forced_width = dpi(22),
@@ -16,7 +21,8 @@ function create_button.small(icon_path)
         widget = wibox.widget.imagebox
     }
 
-    local button = wibox.widget {
+    local button =
+        wibox.widget {
         {button_image, margins = dpi(8), widget = wibox.container.margin},
         bg = beautiful.bg_normal,
         shape = gears.shape.circle,
@@ -25,17 +31,23 @@ function create_button.small(icon_path)
 
     local old_cursor, old_wibox
 
-    button:connect_signal("mouse::enter", function(c)
-        local wb = mouse.current_wibox
-        old_cursor, old_wibox = wb.cursor, wb
-        wb.cursor = "hand1"
-    end)
-    button:connect_signal("mouse::leave", function(c)
-        if old_wibox then
-            old_wibox.cursor = old_cursor
-            old_wibox = nil
+    button:connect_signal(
+        'mouse::enter',
+        function(c)
+            local wb = mouse.current_wibox
+            old_cursor, old_wibox = wb.cursor, wb
+            wb.cursor = 'hand1'
         end
-    end)
+    )
+    button:connect_signal(
+        'mouse::leave',
+        function(c)
+            if old_wibox then
+                old_wibox.cursor = old_cursor
+                old_wibox = nil
+            end
+        end
+    )
 
     return button
 end
@@ -43,14 +55,14 @@ end
 --- Creates big size circle button
 --- @param icon_path string
 function create_button.circle_big(icon_path)
-
-    local button_with_label = wibox.widget {
+    local button_with_label =
+        wibox.widget {
         {
             {
                 {
                     {
                         {
-                            id = "icon",
+                            id = 'icon',
                             image = icon_path,
                             resize = true,
                             forced_width = dpi(18),
@@ -62,16 +74,16 @@ function create_button.circle_big(icon_path)
                     margins = dpi(10),
                     widget = wibox.container.margin
                 },
-                id = "background",
+                id = 'background',
                 bg = beautiful.bg_normal,
                 shape = gears.shape.circle,
                 widget = wibox.container.background
             },
             {
                 {
-                    id = "label",
-                    text = "Off",
-                    font = "Ubuntu 8",
+                    id = 'label',
+                    text = 'Off',
+                    font = 'Ubuntu 8',
                     widget = wibox.widget.textbox
                 },
                 forced_width = dpi(50),
@@ -87,7 +99,8 @@ function create_button.circle_big(icon_path)
 end
 
 function create_button.button_with_label(name, icon)
-    local button_label = wibox.widget {
+    local button_label =
+        wibox.widget {
         text = name,
         font = beautiful.font_small,
         align = 'center',
@@ -95,7 +108,8 @@ function create_button.button_with_label(name, icon)
         widget = wibox.widget.textbox
     }
 
-    local button = wibox.widget {
+    local button =
+        wibox.widget {
         {
             {
                 {
@@ -123,17 +137,23 @@ function create_button.button_with_label(name, icon)
 
     local old_cursor, old_wibox
 
-    button:connect_signal("mouse::enter", function(c)
-        local wb = mouse.current_wibox
-        old_cursor, old_wibox = wb.cursor, wb
-        wb.cursor = "hand1"
-    end)
-    button:connect_signal("mouse::leave", function(c)
-        if old_wibox then
-            old_wibox.cursor = old_cursor
-            old_wibox = nil
+    button:connect_signal(
+        'mouse::enter',
+        function(c)
+            local wb = mouse.current_wibox
+            old_cursor, old_wibox = wb.cursor, wb
+            wb.cursor = 'hand1'
         end
-    end)
+    )
+    button:connect_signal(
+        'mouse::leave',
+        function(c)
+            if old_wibox then
+                old_wibox.cursor = old_cursor
+                old_wibox = nil
+            end
+        end
+    )
 
     return button
 end
