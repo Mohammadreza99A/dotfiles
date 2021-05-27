@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- notifications.lua --> Naughty configs for awesome wm
 --
-
 local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")

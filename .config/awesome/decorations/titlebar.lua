@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- titlebar.lua --> Titlebar decoration for awesome wm
 --
-
 local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
@@ -10,27 +9,15 @@ local beautiful = require("beautiful")
 
 local get_titlebar = function(c)
     -- buttons for the titlebar
-    local buttons =
-        gears.table.join(
-        awful.button(
-            {},
-            1,
-            function()
-                c:emit_signal("request::activate", "titlebar", {raise = true})
-                awful.mouse.client.move(c)
-            end
-        ),
-        awful.button(
-            {},
-            3,
-            function()
-                c:emit_signal("request::activate", "titlebar", {raise = true})
-                awful.mouse.client.resize(c)
-            end
-        )
-    )
+    local buttons = gears.table.join(awful.button({}, 1, function()
+        c:emit_signal("request::activate", "titlebar", {raise = true})
+        awful.mouse.client.move(c)
+    end), awful.button({}, 3, function()
+        c:emit_signal("request::activate", "titlebar", {raise = true})
+        awful.mouse.client.resize(c)
+    end))
 
-    awful.titlebar(c):setup {
+    awful.titlebar(c):setup{
         {
             -- Left
             awful.titlebar.widget.iconwidget(c),

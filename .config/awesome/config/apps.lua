@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- apps.lua --> Most frequently useed apps for awesome wm
 --
-
 return {
     terminal = "kitty",
     editor = "nvim",

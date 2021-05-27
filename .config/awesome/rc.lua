@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- rc.lua --> awesome wm entry file
 --
-
 local awful = require("awful")
 
 -- Notifications config

@@ -2,28 +2,26 @@
 -- https://github.com/Mohammadreza99A
 -- themes_conf.lua --> Theme confs and names for awesome wm
 --
-
 local beautiful = require("beautiful")
 local awful = require("awful")
 local gears = require("gears")
 require("awful.autofocus")
 
 local themes = {
-    "nord" --1
+    "nord" -- 1
 }
 
 local current_theme = 1
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), themes[current_theme]))
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua",
+                             os.getenv("HOME"), themes[current_theme]))
 
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
         -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
+        if type(wallpaper) == "function" then wallpaper = wallpaper(s) end
         gears.wallpaper.maximized(wallpaper, s, true)
         awful.spawn("xterm -e nitrogen --restore &")
     end

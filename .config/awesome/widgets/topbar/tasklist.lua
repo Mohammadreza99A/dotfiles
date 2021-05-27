@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- tasklist.lua --> Tasklist widget for awesome wm
 --
-
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
@@ -11,44 +10,21 @@ local beautiful = require("beautiful")
 
 local get_tasklist = function(s)
     -- Tasklist buttons
-    local tasklist_buttons =
-        gears.table.join(
-        awful.button(
-            {},
-            1,
-            function(c)
-                if c == client.focus then
-                    c.minimized = true
-                else
-                    c:emit_signal("request::activate", "tasklist", {raise = true})
-                end
+    local tasklist_buttons = gears.table.join(
+                                 awful.button({}, 1, function(c)
+            if c == client.focus then
+                c.minimized = true
+            else
+                c:emit_signal("request::activate", "tasklist", {raise = true})
             end
-        ),
-        awful.button(
-            {},
-            3,
-            function()
-                awful.menu.client_list({theme = {width = 250}})
-            end
-        ),
-        awful.button(
-            {},
-            4,
-            function()
-                awful.client.focus.byidx(1)
-            end
-        ),
-        awful.button(
-            {},
-            5,
-            function()
-                awful.client.focus.byidx(-1)
-            end
-        )
-    )
+        end), awful.button({}, 3, function()
+            awful.menu.client_list({theme = {width = 250}})
+        end), awful.button({}, 4, function() awful.client.focus.byidx(1) end),
+                                 awful.button({}, 5, function()
+            awful.client.focus.byidx(-1)
+        end))
 
-    local tasklist =
-        awful.widget.tasklist {
+    local tasklist = awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
@@ -75,17 +51,11 @@ local get_tasklist = function(s)
             {
                 {
                     {
-                        {
-                            id = "icon_role",
-                            widget = wibox.widget.imagebox
-                        },
+                        {id = "icon_role", widget = wibox.widget.imagebox},
                         margins = 2,
                         widget = wibox.container.margin
                     },
-                    {
-                        id = "text_role",
-                        widget = wibox.widget.textbox
-                    },
+                    {id = "text_role", widget = wibox.widget.textbox},
                     layout = wibox.layout.fixed.horizontal
                 },
                 left = 7,
@@ -97,8 +67,7 @@ local get_tasklist = function(s)
         }
     }
 
-    local tasklist_widget =
-        wibox.widget {
+    local tasklist_widget = wibox.widget {
         {
             tasklist,
             bg = beautiful.tasklist_bg_normal,
@@ -110,7 +79,7 @@ local get_tasklist = function(s)
         widget = wibox.container.margin
     }
 
-    return tasklist_widget
+    return wibox.container.margin(tasklist_widget, -30, 30)
 end
 
 return get_tasklist

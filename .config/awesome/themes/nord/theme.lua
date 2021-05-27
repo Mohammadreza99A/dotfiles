@@ -2,7 +2,6 @@
 -- https://github.com/Mohammadreza99A
 -- theme.lua --> Theme configs for nord theme in awesome wm
 --
-
 local wibox = require("wibox")
 local gears = require("gears")
 local dpi = require("beautiful.xresources").apply_dpi
@@ -14,7 +13,18 @@ local theme = {}
 theme.icons_dir = os.getenv("HOME") .. "/.config/awesome/themes"
 theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/themes/nord/wally.png"
 theme.font = "UbuntuMono Nerd Font 12.5"
+theme.font_bold = "UbuntuMono Nerd Font Bold 12.5"
+theme.font_name = "UbuntuMono Nerd Font"
 theme.widget_font = "UbuntuMono Nerd Font 15"
+theme.font_small_bold = "UbuntuMono Nerd Font Bold 11"
+theme.font_small = "UbuntuMono Nerd Font 11"
+theme.font_xsmall = "UbuntuMono Nerd Font 10"
+theme.font_xsmall = "UbuntuMono Nerd Font Light 10"
+theme.font_large = "UbuntuMono Nerd Font 17"
+theme.font_xlarge = "UbuntuMono Nerd Font 20"
+theme.font_large_bold = "UbuntuMono Nerd Font Bold 17"
+theme.font_xlarge_bold = "UbuntuMono Nerd Font Bold 20"
+theme.font_3xlarge_bold = "UbuntuMono Nerd Font Bold 48"
 -- }}}
 
 -- {{{ Colors
@@ -28,8 +38,10 @@ theme.bg_focus = "#3B4252"
 theme.bg_urgent = "#3B4252"
 theme.bg_light = "#232530"
 theme.bg_very_light = "#2e303e"
+
 theme.font_color_light = "#FEFEFE"
 theme.font_color_dark = "#1A1C23"
+
 theme.blue = "#81A1C1"
 theme.blue_light = "#5E81AC"
 theme.cyan = "#8FBCBB"
@@ -60,15 +72,24 @@ theme.titlebar_fg_focus = theme.fg_focus
 -- }}}
 
 -- {{{ Widgets
+theme.widget_shape = gears.shape.rounded_rect
 theme.bg_widget = theme.blue
 theme.fg_widget = theme.green
+theme.wibar_height = dpi(28)
+theme.widget_margin = dpi(6)
 theme.widget_text_color = "#111111"
 theme.widget_space = markup.fontfg(theme.font, theme.widget_text_color, " ")
-theme.widget_text_markup = function(text)
-    return markup.fontfg(theme.font, theme.widget_text_color, markup.bold(text))
+theme.widget_text_markup = function(text, color)
+    return markup.fontfg(theme.font, color or theme.widget_text_color,
+                         markup.bold(text))
 end
 theme.widget_icon_markup = function(icon)
-    return theme.widget_space .. markup.fontfg(theme.widget_font, theme.widget_text_color, icon) .. theme.widget_space
+    return theme.widget_space ..
+               markup.fontfg(theme.widget_font, theme.widget_text_color, icon) ..
+               theme.widget_space
+end
+theme.markup_text = function(text, font)
+    return "<span font='" .. font .. "'>" .. text .. "</span> "
 end
 -- }}}
 
@@ -147,24 +168,44 @@ theme.widget_mail_on = theme.icons_dir .. "/icons/mail_on.png"
 theme.widget_task = theme.icons_dir .. "/icons/task.png"
 theme.widget_scissors = theme.icons_dir .. "/icons/scissors.png"
 theme.widget_weather = theme.icons_dir .. "/icons/dish.png"
-theme.titlebar_close_button_focus = theme.icons_dir .. "/icons/titlebar/close_focus.png"
-theme.titlebar_close_button_normal = theme.icons_dir .. "/icons/titlebar/close_normal.png"
-theme.titlebar_ontop_button_focus_active = theme.icons_dir .. "/icons/titlebar/ontop_focus_active.png"
-theme.titlebar_ontop_button_normal_active = theme.icons_dir .. "/icons/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_inactive = theme.icons_dir .. "/icons/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_inactive = theme.icons_dir .. "/icons/titlebar/ontop_normal_inactive.png"
-theme.titlebar_sticky_button_focus_active = theme.icons_dir .. "/icons/titlebar/sticky_focus_active.png"
-theme.titlebar_sticky_button_normal_active = theme.icons_dir .. "/icons/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_inactive = theme.icons_dir .. "/icons/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_inactive = theme.icons_dir .. "/icons/titlebar/sticky_normal_inactive.png"
-theme.titlebar_floating_button_focus_active = theme.icons_dir .. "/icons/titlebar/floating_focus_active.png"
-theme.titlebar_floating_button_normal_active = theme.icons_dir .. "/icons/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_inactive = theme.icons_dir .. "/icons/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_inactive = theme.icons_dir .. "/icons/titlebar/floating_normal_inactive.png"
-theme.titlebar_maximized_button_focus_active = theme.icons_dir .. "/icons/titlebar/maximized_focus_active.png"
-theme.titlebar_maximized_button_normal_active = theme.icons_dir .. "/icons/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_inactive = theme.icons_dir .. "/icons/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_inactive = theme.icons_dir .. "/icons/titlebar/maximized_normal_inactive.png"
+theme.titlebar_close_button_focus = theme.icons_dir ..
+                                        "/icons/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = theme.icons_dir ..
+                                         "/icons/titlebar/close_normal.png"
+theme.titlebar_ontop_button_focus_active = theme.icons_dir ..
+                                               "/icons/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_active = theme.icons_dir ..
+                                                "/icons/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_inactive = theme.icons_dir ..
+                                                 "/icons/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_inactive = theme.icons_dir ..
+                                                  "/icons/titlebar/ontop_normal_inactive.png"
+theme.titlebar_sticky_button_focus_active = theme.icons_dir ..
+                                                "/icons/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_active = theme.icons_dir ..
+                                                 "/icons/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_inactive = theme.icons_dir ..
+                                                  "/icons/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_inactive = theme.icons_dir ..
+                                                   "/icons/titlebar/sticky_normal_inactive.png"
+theme.titlebar_floating_button_focus_active = theme.icons_dir ..
+                                                  "/icons/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_active = theme.icons_dir ..
+                                                   "/icons/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_inactive = theme.icons_dir ..
+                                                    "/icons/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_inactive = theme.icons_dir ..
+                                                     "/icons/titlebar/floating_normal_inactive.png"
+theme.titlebar_maximized_button_focus_active = theme.icons_dir ..
+                                                   "/icons/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_active = theme.icons_dir ..
+                                                    "/icons/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_inactive = theme.icons_dir ..
+                                                     "/icons/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_inactive = theme.icons_dir ..
+                                                      "/icons/titlebar/maximized_normal_inactive.png"
+theme.right = ""
+theme.left = ""
 -- }}}
 
 -- {{{ Widgets container
@@ -178,15 +219,16 @@ function theme.widget_container(widget, marL, marR)
     else
         current_color = color1
     end
-    return wibox.container.margin(
-        wibox.container.background(
-            wibox.container.margin(widget, marL or 5, marR or 40),
-            current_color,
-            gears.shape.rounded_bar
-        ),
-        -30,
-        0
-    )
+    return wibox.container.margin(wibox.container.background(wibox.container
+                                                                 .margin(widget,
+                                                                         marL or
+                                                                             5,
+                                                                         marR or
+                                                                             40),
+                                                             current_color,
+                                                             gears.shape
+                                                                 .rounded_bar),
+                                  -30, 0)
 end
 
 -- }}}
