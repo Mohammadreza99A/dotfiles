@@ -10,9 +10,10 @@ local markup = require('lib.lain.util.markup')
 
 local theme = {}
 
--- {{{ General
 theme.icons_dir = os.getenv('HOME') .. '/.config/awesome/themes'
 theme.wallpaper = os.getenv('HOME') .. '/.config/awesome/themes/nord/wally.png'
+
+-- {{{ Fonts
 theme.font = 'UbuntuMono Nerd Font 12.5'
 theme.font_bold = 'UbuntuMono Nerd Font Bold 12.5'
 theme.font_name = 'UbuntuMono Nerd Font'
@@ -86,10 +87,13 @@ end
 theme.widget_icon_markup = function(icon)
     return theme.widget_space .. markup.fontfg(theme.widget_font, theme.widget_text_color, icon) .. theme.widget_space
 end
+-- }}}
+
+--- {{{ Markup
 theme.markup_text = function(text, font)
     return "<span font='" .. font .. "'>" .. text .. '</span> '
 end
--- }}}
+--- }}}
 
 -- {{{ Taglists
 -- theme.taglist_spacing = 7
@@ -112,7 +116,7 @@ theme.tasklist_disable_task_name = true
 theme.tasklist_plain_task_name = true
 -- }}}
 
--- {{{
+-- {{{ Notifications
 theme.notification_border_color = theme.blue
 ---}}}
 
@@ -126,46 +130,37 @@ theme.systray_icon_spacing = dpi(5)
 theme.bg_systray = theme.bg_normal
 -- }}}
 
+-- {{{ Widgets container
+local color1 = theme.fg_widget
+local color2 = theme.bg_widget
+local current_color = theme.bg_widget
+
+function theme.widget_container(widget, marL, marR)
+    if current_color == color1 then
+        current_color = color2
+    else
+        current_color = color1
+    end
+    return wibox.container.margin(
+        wibox.container.background(
+            wibox.container.margin(widget, marL or 5, marR or 40),
+            current_color,
+            gears.shape.rounded_bar
+        ),
+        -30,
+        0
+    )
+end
+-- }}}
+
 -- {{{ Icons
-theme.menu_submenu_icon = theme.icons_dir .. '/icons/submenu.png'
 theme.awesome_icon = theme.icons_dir .. '/icons/awesome.png'
 theme.arch_icon = theme.icons_dir .. '/icons/arch.png'
 theme.layout_tile = theme.icons_dir .. '/icons/tile.png'
 theme.layout_tileleft = theme.icons_dir .. '/icons/tileleft.png'
 theme.layout_tilebottom = theme.icons_dir .. '/icons/tilebottom.png'
 theme.layout_tiletop = theme.icons_dir .. '/icons/tiletop.png'
-theme.layout_fairv = theme.icons_dir .. '/icons/fairv.png'
-theme.layout_fairh = theme.icons_dir .. '/icons/fairh.png'
-theme.layout_spiral = theme.icons_dir .. '/icons/spiral.png'
-theme.layout_dwindle = theme.icons_dir .. '/icons/dwindle.png'
-theme.layout_max = theme.icons_dir .. '/icons/max.png'
-theme.layout_fullscreen = theme.icons_dir .. '/icons/fullscreen.png'
-theme.layout_magnifier = theme.icons_dir .. '/icons/magnifier.png'
 theme.layout_floating = theme.icons_dir .. '/icons/floating.png'
-theme.widget_ac = theme.icons_dir .. '/icons/ac.png'
-theme.widget_battery = theme.icons_dir .. '/icons/battery.png'
-theme.widget_battery_low = theme.icons_dir .. '/icons/battery_low.png'
-theme.widget_battery_empty = theme.icons_dir .. '/icons/battery_empty.png'
-theme.widget_brightness = theme.icons_dir .. '/icons/brightness.png'
-theme.widget_clock = theme.icons_dir .. '/icons/clock.png'
-theme.widget_mem = theme.icons_dir .. '/icons/mem.png'
-theme.widget_cpu = theme.icons_dir .. '/icons/cpu.png'
-theme.widget_temp = theme.icons_dir .. '/icons/temp.png'
-theme.widget_net = theme.icons_dir .. '/icons/net.png'
-theme.widget_hdd = theme.icons_dir .. '/icons/hdd.png'
-theme.widget_music = theme.icons_dir .. '/icons/note.png'
-theme.widget_music_on = theme.icons_dir .. '/icons/note.png'
-theme.widget_music_pause = theme.icons_dir .. '/icons/pause.png'
-theme.widget_music_stop = theme.icons_dir .. '/icons/stop.png'
-theme.widget_vol = theme.icons_dir .. '/icons/vol.png'
-theme.widget_vol_low = theme.icons_dir .. '/icons/vol_low.png'
-theme.widget_vol_no = theme.icons_dir .. '/icons/vol_no.png'
-theme.widget_vol_mute = theme.icons_dir .. '/icons/vol_mute.png'
-theme.widget_mail = theme.icons_dir .. '/icons/mail.png'
-theme.widget_mail_on = theme.icons_dir .. '/icons/mail_on.png'
-theme.widget_task = theme.icons_dir .. '/icons/task.png'
-theme.widget_scissors = theme.icons_dir .. '/icons/scissors.png'
-theme.widget_weather = theme.icons_dir .. '/icons/dish.png'
 theme.titlebar_close_button_focus = theme.icons_dir .. '/icons/titlebar/close_focus.png'
 theme.titlebar_close_button_normal = theme.icons_dir .. '/icons/titlebar/close_normal.png'
 theme.titlebar_ontop_button_focus_active = theme.icons_dir .. '/icons/titlebar/ontop_focus_active.png'
@@ -191,33 +186,7 @@ theme.icon_add = theme.icons_dir .. '/icons/add.svg'
 theme.icon_minus = theme.icons_dir .. '/icons/minus.svg'
 theme.icon_times = theme.icons_dir .. '/icons/remove.svg'
 theme.icon_screenhost_taken = theme.icons_dir .. '/icons/camera-photo-icon.svg'
-theme.icon_recorder = theme.icons_dir .. '/icons/camera-on.svg'
 theme.icon_camera = theme.icons_dir .. '/icons/camera-photo.svg'
-
--- }}}
-
--- {{{ Widgets container
-local color1 = theme.fg_widget
-local color2 = theme.bg_widget
-local current_color = theme.bg_widget
-
-function theme.widget_container(widget, marL, marR)
-    if current_color == color1 then
-        current_color = color2
-    else
-        current_color = color1
-    end
-    return wibox.container.margin(
-        wibox.container.background(
-            wibox.container.margin(widget, marL or 5, marR or 40),
-            current_color,
-            gears.shape.rounded_bar
-        ),
-        -30,
-        0
-    )
-end
-
 -- }}}
 
 return theme

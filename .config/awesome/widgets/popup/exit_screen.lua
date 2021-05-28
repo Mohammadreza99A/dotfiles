@@ -111,7 +111,7 @@ local function launch(args)
             phrase_widget,
             {
                 {
-                    create_button('refresh-cw', 'Reboot (r)', accent_color, onreboot, icon_size, icon_margin),
+                    create_button('restart', 'Reboot (r)', accent_color, onreboot, icon_size, icon_margin),
                     create_button('lock', 'Lock (k)', accent_color, onlock, icon_size, icon_margin),
                     create_button('moon', 'Suspend (u)', accent_color, onsuspend, icon_size, icon_margin),
                     create_button('log-out', 'Log Out (l)', accent_color, onlogout, icon_size, icon_margin),
