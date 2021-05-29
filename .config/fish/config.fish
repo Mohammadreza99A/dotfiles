@@ -14,6 +14,10 @@
 
 set fish_greeting
 
+# Default editor
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
 # Man pages colors
 set -xU LESS_TERMCAP_md (printf "\e[01;31m")
 set -xU LESS_TERMCAP_me (printf "\e[0m")
