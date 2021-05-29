@@ -48,6 +48,9 @@ local create_clock = function()
         ontop = true,
         visible = false,
         bg = '#00000000',
+        border_width = dpi(2),
+        border_color = beautiful.fg_focus,
+        shape = beautiful.widget_shape,
         placement = function(w)
             awful.placement.bottom_right(
                 w,
@@ -98,7 +101,6 @@ local create_clock = function()
             },
             bg = beautiful.bg_normal,
             forced_height = popup_height,
-            shape = beautiful.widget_shape,
             widget = wibox.container.background
         }
     }
