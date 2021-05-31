@@ -31,7 +31,7 @@ run copyq
 
 # idle watcher
 if (command -v xidlehook && ! pgrep xidlehook); then
-  xidlehook --not-when-audio --timer 600 'systemctl suspend' ''
+  xidlehook --not-when-audio --timer 600 'systemctl suspend' '' &
 fi
 
 if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
