@@ -49,6 +49,7 @@ local function factory(args)
     pulsebar.notification_preset = args.notification_preset
     pulsebar.devicetype = args.devicetype or "sink"
     pulsebar.cmd =
+---@diagnostic disable-next-line: ambiguity-1
         args.cmd or
         "pacmd list-" ..
             pulsebar.devicetype ..

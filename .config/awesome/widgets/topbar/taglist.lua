@@ -82,19 +82,17 @@ local get_taglist = function(s)
         awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
-        style = {shape = gears.shape.rounded_bar},
+        style = {shape = gears.shape.rectangle},
         layout = {spacing = 0, layout = wibox.layout.fixed.horizontal},
         widget_template = {
             {
                 {id = 'icon_role', widget = wibox.widget.imagebox},
-                id = 'margin_role',
                 top = dpi(5),
                 bottom = dpi(5),
                 left = dpi(5),
                 right = dpi(5),
                 widget = wibox.container.margin
             },
-            id = 'background_role',
             widget = wibox.container.background,
             update_callback = function(self, c3, index, objects)
                 update_tags(self, c3)
@@ -103,7 +101,7 @@ local get_taglist = function(s)
         buttons = taglist_buttons
     }
 
-    return wibox.container.background(wibox.container.margin(pac_taglist, -20, 30), beautiful.bg_normal)
+    return beautiful.make_pill(pac_taglist)
 end
 
 return get_taglist

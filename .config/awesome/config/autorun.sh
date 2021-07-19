@@ -16,7 +16,7 @@ function run() {
 run nitrogen --restore
 
 ## Start Compositing Manager
-# run picom -b --config ~/.config/picom/picom.conf
+run picom -b --config .config/picom/picom.conf 
 
 ## Enable Super Keys
 run xcape -e 'Super_L=Super_L|Control_L|Escape'

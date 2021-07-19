@@ -22,6 +22,7 @@ local function factory(args)
 
     pulse.devicetype = args.devicetype or "sink"
     pulse.cmd =
+---@diagnostic disable-next-line: ambiguity-1
         args.cmd or
         "pacmd list-" ..
             pulse.devicetype ..

@@ -17,7 +17,7 @@ theme.wallpaper = os.getenv('HOME') .. '/.config/awesome/themes/nord/wally.png'
 theme.font = 'UbuntuMono Nerd Font 12.5'
 theme.font_bold = 'UbuntuMono Nerd Font Bold 12.5'
 theme.font_name = 'UbuntuMono Nerd Font'
-theme.widget_font = 'UbuntuMono Nerd Font 15'
+theme.widget_font = 'UbuntuMono Nerd Font 12.5'
 theme.font_small_bold = 'UbuntuMono Nerd Font Bold 11'
 theme.font_small = 'UbuntuMono Nerd Font 11'
 theme.font_xsmall = 'UbuntuMono Nerd Font 10'
@@ -75,14 +75,14 @@ theme.titlebar_fg_focus = theme.fg_focus
 
 -- {{{ Widgets
 theme.widget_shape = gears.shape.rounded_rect
-theme.bg_widget = theme.blue
-theme.fg_widget = theme.green
+theme.bg_widget = theme.green
+theme.fg_widget = theme.blue
 theme.wibar_height = dpi(28)
 theme.widget_margin = dpi(6)
 theme.widget_text_color = '#111111'
 theme.widget_space = markup.fontfg(theme.font, theme.widget_text_color, ' ')
 theme.widget_text_markup = function(text, color)
-    return markup.fontfg(theme.font, color or theme.widget_text_color, markup.bold(text))
+    return markup.fontfg(theme.widget_font, color or theme.widget_text_color, markup.bold(text))
 end
 theme.widget_icon_markup = function(icon)
     return theme.widget_space .. markup.fontfg(theme.widget_font, theme.widget_text_color, icon) .. theme.widget_space
@@ -109,8 +109,8 @@ theme.taglist_font = 'SauceCodePro Nerd Font 13'
 -- }}}
 
 -- {{{ Tasklists
-theme.tasklist_bg_normal = theme.bg_light
-theme.tasklist_bg_focus = theme.titlebar_bg_focus
+theme.tasklist_bg_normal = theme.titlebar_bg_focus
+theme.tasklist_bg_focus = theme.bg_light
 theme.tasklist_disable_icon = false
 theme.tasklist_disable_task_name = true
 theme.tasklist_plain_task_name = true
@@ -127,7 +127,7 @@ theme.menu_width = dpi(200)
 
 -- {{{ Systray
 theme.systray_icon_spacing = dpi(5)
-theme.bg_systray = theme.bg_normal
+theme.bg_systray = theme.bg_dark
 -- }}}
 
 -- {{{ Widgets container
@@ -151,16 +151,25 @@ function theme.widget_container(widget, marL, marR)
         0
     )
 end
+
+function theme.make_pill(w, c)
+    return wibox.widget {
+        wibox.container.margin(w, 10, 10),
+        bg = c or theme.bg_dark,
+        shape = gears.shape.rounded_bar,
+        widget = wibox.container.background
+    }
+end
 -- }}}
 
 -- {{{ Icons
 theme.awesome_icon = theme.icons_dir .. '/icons/awesome.png'
 theme.arch_icon = theme.icons_dir .. '/icons/arch.png'
-theme.layout_tile = theme.icons_dir .. '/icons/tile.png'
+theme.layout_tile = theme.icons_dir .. '/icons/tile.svg'
 theme.layout_tileleft = theme.icons_dir .. '/icons/tileleft.png'
 theme.layout_tilebottom = theme.icons_dir .. '/icons/tilebottom.png'
 theme.layout_tiletop = theme.icons_dir .. '/icons/tiletop.png'
-theme.layout_floating = theme.icons_dir .. '/icons/floating.png'
+theme.layout_floating = theme.icons_dir .. '/icons/floating.svg'
 theme.titlebar_close_button_focus = theme.icons_dir .. '/icons/titlebar/close_focus.png'
 theme.titlebar_close_button_normal = theme.icons_dir .. '/icons/titlebar/close_normal.png'
 theme.titlebar_ontop_button_focus_active = theme.icons_dir .. '/icons/titlebar/ontop_focus_active.png'

@@ -24,8 +24,6 @@ local widget_systray =
             {systray, layout = wibox.layout.fixed.horizontal},
             left = dpi(2),
             right = dpi(2),
-            top = dpi(1),
-            bottom = dpi(1),
             widget = wibox.container.margin
         },
         border_width = 2,
@@ -35,4 +33,9 @@ local widget_systray =
     widget = wibox.container.margin
 }
 
-return widget_systray
+return wibox.widget {
+    widget_systray,
+    bg = beautiful.bg_dark,
+    shape = gears.shape.rounded_bar,
+    widget = wibox.container.background
+}

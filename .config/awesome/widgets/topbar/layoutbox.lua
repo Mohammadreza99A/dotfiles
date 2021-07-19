@@ -5,6 +5,8 @@
 
 local gears = require('gears')
 local awful = require('awful')
+local wibox = require('wibox')
+local clickable_container = require('widgets.clickable-container')
 require('awful.autofocus')
 
 local layoutbox = {}
@@ -43,4 +45,7 @@ layoutbox.layoutbox:buttons(
     )
 )
 
-return layoutbox.layoutbox
+return wibox.widget {
+    layoutbox.layoutbox,
+    widget = clickable_container
+}

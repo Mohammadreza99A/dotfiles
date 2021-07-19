@@ -11,12 +11,12 @@ return wibox.container.background(
     wibox.container.margin(
         awful.widget.launcher(
             {
-                image = beautiful.awesome_icon,
+                image = beautiful.arch_icon,
                 menu = require('config.menu')
             }
         ),
         10,
-        25
+        10
     ),
     beautiful.bg_normal
 )

@@ -51,7 +51,12 @@ local rules = {
                 'jetbrains-idea-ce',
                 'insomnia',
                 'Insomnia',
-                'persepolis'
+                'persepolis',
+                'telegram-desktop',
+                'TelegramDesktop',
+                'mp3-tagger',
+                'virt-manager',
+                'Virt-manager',
             },
             name = {
                 'Event Tester' -- xev.

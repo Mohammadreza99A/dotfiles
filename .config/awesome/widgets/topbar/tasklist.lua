@@ -76,10 +76,9 @@ local get_tasklist = function(s)
                 {
                     {
                         {id = 'icon_role', widget = wibox.widget.imagebox},
-                        margins = 2,
+                        margins = 4,
                         widget = wibox.container.margin
                     },
-                    {id = 'text_role', widget = wibox.widget.textbox},
                     layout = wibox.layout.fixed.horizontal
                 },
                 left = 7,
@@ -104,7 +103,7 @@ local get_tasklist = function(s)
         widget = wibox.container.margin
     }
 
-    return wibox.container.margin(tasklist_widget, -30, 30)
+    return tasklist_widget
 end
 
 return get_tasklist

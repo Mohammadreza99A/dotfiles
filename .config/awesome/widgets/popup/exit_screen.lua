@@ -173,14 +173,17 @@ local function widget(args)
     local icon = args.icon or WIDGET_DIR .. '/power.svg'
 
     local res =
+        beautiful.make_pill(
         wibox.widget {
-        {
-            {image = icon, widget = wibox.widget.imagebox},
-            margins = 4,
-            layout = wibox.container.margin
+            {
+                {image = icon, widget = wibox.widget.imagebox},
+                margins = 4,
+                layout = wibox.container.margin
+            },
+            layout = wibox.layout.fixed.horizontal
         },
-        layout = wibox.layout.fixed.horizontal
-    }
+        beautiful.red
+    )
 
     res:buttons(
         awful.util.table.join(
@@ -206,12 +209,16 @@ end
 return {
     launch = launch,
     widget = {
-        widget(
-            {
-                phrases = {'Exit!', 'Goodbye!', 'See you soon!'},
-                icon_margin = 16,
-                icon_size = 40
-            }
+        wibox.container.margin(
+            widget(
+                {
+                    phrases = {'Exit!', 'Goodbye!', 'See you soon!'},
+                    icon_margin = 16,
+                    icon_size = 40
+                }
+            ),
+            5,
+            5
         ),
         widget = clickable_container
     }
